@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JFAlertViewController"
-  s.version      = "0.0.2"
-  s.summary      = "JFAlertViewController可以在iOS8.0之后快速创建alertView"
+  s.version      = "0.0.3"
+  s.summary      = "JFAlertViewController 可以在iOS8.0之后快速创建 alertView 提示框"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  封装了AlertController, 不至于每次写alert时 好多Block回调, 简短 方便的代码创建
+  封装了AlertController, 不至于每次写alert时 好多Block回调, 简短 方便的代码创建, 欢迎指正
                    DESC
 
   s.homepage     = "https://github.com/ijunfly/JFAlertViewController.git"
@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "JFAlertViewController/Classes/**/*.{h,m}"
+  s.source_files  = "Classes/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
