@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JFAlertViewController"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "JFAlertViewController可以在iOS8.0之后快速创建alertView"
 
   # This description is used to generate tags and improve search results.
@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "Classes", "JFAlertViewController/Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
