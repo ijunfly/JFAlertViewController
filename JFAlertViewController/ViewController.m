@@ -69,10 +69,15 @@
 
 - (JFAlertViewController *)alertVC {
     if (!_alertVC) {
-        _alertVC = [JFAlertViewController alertViewWithTitle:@"提示框" message:@"我是一个提示框, 这是我的显示消息" preferredStyle:UIAlertControllerStyleAlert cancelAction:@"我是取消按钮" cancelBlock:^(JFAlertViewController *alertView) {
+        _alertVC = [JFAlertViewController alertViewWithTitle:@"提示框"
+                                                     message:@"我是一个提示框, 这是我的显示消息"
+                                              preferredStyle:UIAlertControllerStyleAlert
+                                                cancelButton:@"我是取消按钮" cancelBlock:^(JFAlertViewController *alertView) {
             NSLog(@"点击了 %@ 的取消按钮", alertView);
-        } defaultButton:@"我是确认按钮" defaultBlock:^(JFAlertViewController *alertView, NSUInteger index) {
-            NSLog(@"点击了 %@ 的第%lu个确认按钮", alertView, (unsigned long)index);
+        }
+                                                actionButton:@[@"我是确认1⃣️", @"我是确认2⃣️"]
+                                                 actionBlock:^(JFAlertViewController *alertView, NSUInteger index) {
+            NSLog(@"点击了 %@ 的第%lu个确认按钮", alertView, (unsigned long)index+1);
         }];
     }
     return _alertVC;
