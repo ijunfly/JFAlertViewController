@@ -20,13 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     self.alertSheetVC = [JFAlertViewController new];
     self.alertSheetVC.delegate = self;
     self.alertSheetVC.dataSource = self;
     self.alertSheetVC.cancelTitle = @"取😇消";
-    
     
 }
 
