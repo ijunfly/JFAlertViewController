@@ -45,6 +45,7 @@
 		183C48771E162E8D0083FC53 = {
 			isa = PBXGroup;
 			children = (
+				18A965ED1E32102800A99CBA /* Classes */,
 				183C48821E162E8D0083FC53 /* JFAlertViewController */,
 				183C48811E162E8D0083FC53 /* Products */,
 			);
@@ -61,7 +62,6 @@
 		183C48821E162E8D0083FC53 /* JFAlertViewController */ = {
 			isa = PBXGroup;
 			children = (
-				18A965ED1E32102800A99CBA /* Classes */,
 				183C48861E162E8D0083FC53 /* AppDelegate.h */,
 				183C48871E162E8D0083FC53 /* AppDelegate.m */,
 				183C48891E162E8D0083FC53 /* ViewController.h */,
