@@ -32,14 +32,16 @@
             sSelf.cancelBlock(sSelf);
         }
     }];
+    if (self.cancelColor) {
+        [cancelAction setValue:self.cancelColor forKey:@"titleTextColor"];
+    }
     [self addAction:cancelAction];
-    
     
     // 设置其他按钮
     if ((self.dataSource && [self.dataSource respondsToSelector:@selector(numberOfIndexsInJFAlertView:)])) {
         self.items = [self.dataSource numberOfIndexsInJFAlertView:self];
         self.actionTitles = nil;
-        NSAssert(([self.dataSource respondsToSelector:@selector(JFAlertView:titleAtIndexNumber:)]), @"JFAlertViewController // dataSource 实现'numberOfIndexsInJFAlertView:'之后必须实现'JFAlertView:titleAtIndexNumber:'");
+        NSAssert(([self.dataSource respondsToSelector:@selector(JFAlertView:titleAtIndexNumber:)]), @"JFAlertViewController // dataSource 实现'numberOfIndexsInJFAlertView:'之后必须实现'JFAlertView:titleAtIndexNumber:' and 'JFAlertView:colorAtIndexNumber:' ");
         
     } else if (self.actionTitles) {
         self.items = self.actionTitles.count;
@@ -51,14 +53,20 @@
 
     for (int i = 0; i < self.items; i++) {
         NSString *title = (self.actionTitles) ? self.actionTitles[i] : [self.dataSource JFAlertView:self titleAtIndexNumber:i];
-        [self addAction:[UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UIAlertAction *temAction = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             __strong __typeof__ (wSelf) sSelf = wSelf;
             if (sSelf.delegate && [sSelf.delegate respondsToSelector:@selector(JFAlertView:clickedAtIndex:)]) {
                 [sSelf.delegate JFAlertView:sSelf clickedAtIndex:i];
             } else if (sSelf.actionBlock) {
                 sSelf.actionBlock(sSelf, i);
             }
-        }]];
+        }];
+        UIColor *titleColor = (self.actionColors) ? self.actionColors[i] : [self.dataSource JFAlertView:self colorAtIndexNumber:i];
+        if (titleColor) {
+            [temAction setValue:titleColor forKey:@"titleTextColor"];
+        }
+        [self addAction:temAction];
     }
     
 }
@@ -86,6 +94,28 @@
     return doneBaseAlertView;
 }
 
++ (JFAlertViewController *)alertViewWithTitle:(NSString *)title
+                                      message:(NSString *)message
+                               preferredStyle:(UIAlertControllerStyle)preferredStyle
+                                 cancelButton:(NSString *)cancel
+                                  cancelColor:(UIColor *)cancelColor
+                                  cancelBlock:(void (^)(JFAlertViewController *alertView))cancelBlock
+                                 actionButton:(NSArray <NSString *> *)actionTexts
+                                  actionColors:(NSArray <UIColor *> *)actionColors
+                                  actionBlock:(void (^)(JFAlertViewController *alertView, NSUInteger index))actionBlock {
+    JFAlertViewController *doneBaseAlertView = [JFAlertViewController alertControllerWithTitle:title
+                                                                                       message:message
+                                                                                preferredStyle:preferredStyle];
+    doneBaseAlertView.cancelTitle = cancel;
+    doneBaseAlertView.cancelBlock = cancelBlock;
+    doneBaseAlertView.cancelColor = cancelColor;
+    if (actionTexts) {
+        doneBaseAlertView.actionTitles = actionTexts;
+        doneBaseAlertView.actionBlock = actionBlock;
+        doneBaseAlertView.actionColors = actionColors;
+    }
+    return doneBaseAlertView;
+}
 
 
 
