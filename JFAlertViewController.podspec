@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JFAlertViewController"
-  s.version      = "0.1.01"
+  s.version      = "0.1.2"
   s.summary      = "JFAlertViewController 可以在iOS8.0之后快速创建 alertView 提示框"
 
   # This description is used to generate tags and improve search results.
